@@ -1,20 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import TextField from '@material-ui/core/TextField';
+import ButtonGrid from './ButtonGrid';
 
-import {inputAction} from './../actions/operationActions';
-
-import Button from '@material-ui/core/Button';
 
 class CalculatorFrame extends Component {
   render() {
-    const {value, inputAction} = this.props;
+    const {value} = this.props;
 
    return (
     <div>
-        <p>
-            {value}
-        </p>
-        <Button variant={"contained"} color={"default"} onClick={inputAction.bind(this, "hello")}>click me</Button>
+        <TextField
+            id="outlined-bare"
+            value={value}
+            margin="normal"
+            variant="outlined"
+            style={{width: 300}}
+            inputProps={{
+                style: { textAlign: "right" }
+              }}
+        />
+
+        <ButtonGrid />
+
     </div>
    );
   }
@@ -24,8 +32,8 @@ class CalculatorFrame extends Component {
     value: state.operationReducer.value
    })
 const mapDispatchToProps = dispatch => ({
-    inputAction: (val) => dispatch(inputAction(val))
-    })
+
+})
       
 
  export default connect(mapStateToProps, mapDispatchToProps)(CalculatorFrame);
